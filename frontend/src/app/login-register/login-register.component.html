@@ -1,0 +1,81 @@
+<div class="LoginRegister">
+    <div class="LoginRegisterContent">
+        <div class="LoginRegisterContentFormWrap">
+            <div class="LoginRegisterContentForm">
+                <div class="LoginRegisterContentFormForm">
+                    <div class="LoginRegisterContentFormFormDiv">
+                        <div class="LoginRegisterContentFormFormDivTitle" [ngClass]="NewPassword ? 'LoginRegisterContentFormFormDivTitle_NewPassword' : 'LoginRegisterContentFormFormDivTitle'">
+                            <h1 *ngIf="LoginForm == true">Login</h1>
+                            <h1 *ngIf="RegisterForm == true">Register</h1>
+                            <h1 *ngIf="NewPassword == true">New Password</h1>
+                        </div>
+                        <!-- LOGIN FORM -->
+                        <div class="forms" *ngIf="LoginForm == true" id="LoginForm" [ngClass]="FlipForRegister ? 'FlipOnChangeAnimation' : 'FlipOnChangeAnimationExit'">
+                            <i class="bi bi-envelope-fill LoginIconMail"></i><input type="text" id="LoginEmail" placeholder="Enter Your Email" [(ngModel)] = "emailLogin">
+                            <i class="bi bi-key-fill LoginIconPass"></i><input type="password" id="LoginPassword" placeholder="Enter Your Password" [(ngModel)] = "passwordLogin">
+                            <button class="LoginRegisterBttn" (click)="login()">LOGIN</button>
+                            <p (click)="ChangeToNewPassword()">Forgot password?</p>
+                        </div>
+                        <!-- REGISTER FORM -->
+                        <div  class="forms" *ngIf="RegisterForm == true" id="RegisterForm" [ngClass]="FlipForLogin ? 'FlipOnChangeAnimation' : 'FlipOnChangeAnimationExit'">
+                            <div id="FormFirstNameLastName">
+                                <input type="text" id="name" placeholder="Enter Your First Name" [(ngModel)] = "firstNameRegister">
+                                <input type="text" id="LastName" placeholder="Enter Your Last Name" [(ngModel)] = "lastNameRegister">
+                            </div>
+                            <input type="date" id="RegisterDate" placeholder="" [(ngModel)] = "dobRegister">
+                            <i class="bi bi-envelope-fill RegisterIconMail"></i><input type="text" id="RegisterEmail" placeholder="Enter Your Email" [(ngModel)] = "emailRegister"><span class="input-group-text inputGroup" id="basic-addon2">@email.com</span>
+                            <span *ngIf="UserExist == true" class="UserExist">User by this name already exist!</span>
+                            <i class="bi bi-key-fill RegisterIconPass"></i><input type="password" id="RegisterPassword" placeholder="Enter Your Password" [(ngModel)] = "passwordRegister">
+                            
+                            <button class="LoginRegisterBttn" (click)="register()">Register</button>
+                            
+                        </div>
+                        <!-- FORGOT PASSWORD FORM -->
+                        <div  class="forms"  *ngIf="NewPassword == true" id="NewPasswordForm" [ngClass]="FlipForLogin ? 'FlipOnChangeAnimation' : 'FlipOnChangeAnimationExit'">
+                            <input type="text" id="name" placeholder="Enter Your Email" [(ngModel)] = "emailPasswordChange">
+                            <i class="bi bi-key-fill NewPasswordIconPass"></i><input type="password" id="NewPassword" placeholder="Enter Your New Password" [(ngModel)] = "passwordChange">
+                            <button class="LoginRegisterBttn" (click)="changePassword()">Change Password</button>
+                            <p class="NoAccYesAcc" *ngIf="NewPassword == true">Back to login form. <span (click)="ChangeFormToLogin()">Login here!</span></p>
+                        </div>
+                        <p class="NoAccYesAcc" *ngIf="LoginForm == true">Don't have an account? <span (click)="ChangeForm()">Register here!</span></p>
+                        <p class="NoAccYesAcc" *ngIf="RegisterForm == true">Already have an account? <span (click)="ChangeForm()">Login here!</span></p>
+                        
+
+                    </div>
+                </div>
+                <div class="LoginRegisterContentFormBackground">
+                    <div class="LoginRegisterContentFormBackgroundTitle">
+                        <div>
+                            <h1>
+                                Lorem lorem <br> lorem lorem lorem
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-success alertSuccesRegistration" *ngIf="succesRegistration" role="alert" >
+        Registration succeded
+    </div>
+    <div class="alert alert-warning alertBadCredentials" *ngIf="badCredentials" role="alert" >
+        Credentials are incorrect
+    </div>
+    <div class="alert alert-warning alertBadCredentials" *ngIf="weakPassword" role="alert" >
+        Password must have more then 6 characters
+    </div>
+    <div class="alert alert-warning noUserFound" *ngIf="noUserFound" role="alert" >
+        User doesn't exist
+    </div>
+    <div class="alert alert-warning noSamePassword" *ngIf="noSamePassword" role="alert" >
+        New password can't be the same as the old one
+    </div>
+    <div class="alert alert-success passwordChanged" *ngIf="oldPasswordChanged" role="alert" >
+       Password changed
+    </div>
+    <div class="alert alert-warning wrongFormat" *ngIf="wrongFormat" role="alert" >
+        Wrong format. Make sure your email is of format "example@email.com"
+    </div>
+
+</div>
+

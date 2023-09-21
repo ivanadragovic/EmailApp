@@ -1,0 +1,471 @@
+$TextColor: rgb(121, 121, 121);
+$BoxShadow:1px 0px 5px 0px rgb(192, 192, 192);;
+$Overlay:radial-gradient(circle, rgba(122,61,254,1) 15%, rgba(160,122,255,0.9360119047619048) 99%);
+$Overlay1:radial-gradient(circle, rgba(40,28,40,1) 0%, rgba(40,28,40,0.84) 100%);
+$BackgroundColor: #003d7a;
+$BackgroundColor1:rgb(40, 28, 48);
+$BorderColor:#00478f;
+$ButtonBackgroundcolor1:rgb(227, 18, 86);
+$FontFamily:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$HoverBgcolor:#001f3d;
+//Cela komponenta
+.LoginRegister{
+    width: 100%;
+    height: 100vh;
+    background-color: $BackgroundColor1;
+    
+}
+//
+//Sam sadrzaj, div koji obuhvata sadrzaj
+.LoginRegisterContent{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+//Div koji obuhvata formu i okolne divove
+.LoginRegisterContentFormWrap{
+    width: 60%;
+    
+}
+//Forma i slicica
+.LoginRegisterContentForm{
+    width: 100%;
+    height: 500px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: $BoxShadow;
+    display: flex;
+    flex-direction: row;
+}
+//Sama forma
+.LoginRegisterContentFormForm{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+//Div oko forme i naslova
+.LoginRegisterContentFormFormDiv{
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+    
+    display: flex;
+    flex-direction: column;
+    
+}
+//Forma sa inputima
+.LoginRegisterContentFormFormDiv .forms{
+    width: 100%;
+    height:80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    position: relative;
+}
+.LoginRegisterContentFormFormDiv .forms p{
+    align-self:flex-start;
+    font-family: $FontFamily;
+    cursor: pointer;
+    margin-top: 5px;
+}
+//Ovo je generalno i za register inpute i za login inpute
+#LoginEmail, #LoginPassword,#RegisterEmail, #RegisterPassword,#NewPassword, #RegisterDate, #name, #LastName{
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+    outline: 0;
+    border-width: 0 0 0.5px;
+    border-color: gray;
+    text-align: left;
+    text-indent: 35px;
+}
+#RegisterEmail, #RegisterPassword, #RegisterDate, #name, #LastName{
+    height: 40px;
+    
+}
+#RegisterEmail::placeholder, #RegisterPassword::placeholder, #RegisterDate::placeholder, #name::placeholder, #LastName::placeholder{
+    top: 5px !important;
+}
+input:focus {
+    border-color:gray;
+    outline: 0.5px dotted #000
+}
+input:focus + .bi-envelope{
+    opacity: 0;
+}
+input::placeholder{
+    font-family: $FontFamily;
+    font-size: 20px;
+    opacity: 0.6;
+    position: absolute;
+    top:10px;
+    
+}
+///
+.LoginRegisterBttn{
+    margin-top: 30px;
+    width: 100%;
+    height: 50px;
+    font-size: 25px;
+    color: white;
+    font-family: $FontFamily !important;
+    background-color: $ButtonBackgroundcolor1;
+    border: none;
+    border-radius: 10px;
+    box-shadow: $BoxShadow;
+    font-weight: 500;
+}
+
+.LoginIconMail, .LoginIconPass{
+    color: $ButtonBackgroundcolor1;
+    font-size: 25px;
+    position: absolute;
+}
+.LoginIconMail{
+    left: 5px;
+    top: 35px
+}
+.LoginIconPass{
+    left: 5px;
+    top: 115px
+}
+.NoAccYesAcc{
+    margin-top: 10px;
+    align-self: center;
+}
+.NoAccYesAcc span{
+    font-family: $FontFamily;
+    color: $ButtonBackgroundcolor1;
+    cursor: pointer;
+    font-weight: 500;
+
+}
+/////Animacija
+// .FlipOnChangeAnimationExit{
+//     animation: none;
+// }
+// .FlipOnChangeAnimation{
+//     backface-visibility: visible !important;
+// 	animation: flip 1.5s;
+    
+// }
+
+// @keyframes flip {
+//     100%{
+//         transform: rotateY(360deg);
+//     }
+// }
+
+
+
+
+
+/// 
+//Forma sa inputima za register
+#FormFirstNameLastName{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+#FormFirstNameLastName input{
+    text-indent: 0;
+    width: 45%;
+}
+.RegisterIconMail, .RegisterIconPass{
+    color: $ButtonBackgroundcolor1;
+    font-size: 25px;
+    position: absolute;
+}
+.RegisterIconMail{
+    left: 5px;
+    top: 165px;
+}
+.RegisterIconPass{
+    left: 5px;
+    top: 235px;
+}
+#RegisterDate{
+    text-indent: 0 !important;
+}
+.UserExist{
+    margin-top: 5px;
+    align-self:baseline;
+    top: 205px;
+    position: absolute;
+    color: red;
+    animation: hithere 0.4s ease;
+}
+.alertSuccesRegistration, .alertBadCredentials, .noUserFound, .noSamePassword, .wrongFormat, .passwordChanged{
+    position: absolute;
+    bottom: 0;
+    left:20px;
+    animation: roll-in 1s ease;
+}
+@keyframes roll-in {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%) 
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px)
+    }
+  }
+@keyframes hithere {
+    0%, 30% {transform: translateX(0);}
+	0%, 20%{transform: translateX(-10px);}
+	10%, 30%{transform: translateX(10px);}
+}
+.inputGroup{
+    position: absolute;
+    right: 0;
+    top: 170px;
+    font-size: 20px;
+    background-color: transparent;
+    border: none !important;
+    
+    
+    height: 40px;
+}
+// #RegisterDate::after{
+//     // content: "Date of birth";
+//     // width: 15%;
+//     // opacity: 0.7;
+//     // border-radius: 5px;
+    
+//     // background-color: rgb(218, 218, 218);
+//     // position: absolute;
+//     // top:90px;
+// }
+// #RegisterDate:hover  #RegisterDate::after{
+    
+// }
+//
+//Login/Register naslov
+.LoginRegisterContentFormFormDivTitle{
+    display: table;
+    width: 27%;
+    height: 20%;
+    border-bottom: $ButtonBackgroundcolor1 solid 2px;
+}
+.LoginRegisterContentFormFormDivTitle_NewPassword{
+    width: 50%;
+}
+.LoginRegisterContentFormFormDivTitle h1{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: table-cell;
+    vertical-align: bottom;
+    padding-bottom: 5px;
+}
+//New Password
+
+ .NewPasswordIconPass{
+    color: $ButtonBackgroundcolor1;
+    font-size: 25px;
+    position: absolute;
+    top:105px;
+    left: 5px;
+ }   
+ #NewPasswordForm #name{
+    text-indent: 0;
+ }
+//
+//Slicica
+.LoginRegisterContentFormBackground{
+    width: 40%;
+    height: 100%;
+    background-image: url(/assets/images/LoginRegisterCover.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    
+}
+.LoginRegisterContentFormBackground::before{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: $Overlay1;
+    opacity: 0.4;
+    border-radius: 5px;
+    
+}
+//Div koji obuhvata naslov(tekst preko slicice)
+.LoginRegisterContentFormBackgroundTitle{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.LoginRegisterContentFormBackgroundTitle div{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 50%;
+    z-index: 1;
+}
+.LoginRegisterContentFormBackgroundTitle h1{
+    font-size: 30px;
+    color: blanchedalmond;
+}
+@media only screen and (min-width:320px) and (max-width:400px){
+    .inputGroup{
+        font-size: 13px !important;
+    }
+    
+    #RegisterPassword::placeholder, #RegisterEmail::placeholder{
+        font-size: 15px !important;
+        top:10px !important;
+    }
+    .RegisterIconMail{
+        left: 5px;
+        top: 239px !important;
+    }
+    .RegisterIconPass{
+        left: 5px;
+        top: 309px !important;
+    }
+}
+@media only screen and (min-width:320px) and (max-width:610px){
+    .LoginRegisterContentFormWrap{
+        width: 80%;
+        
+    }
+    .LoginRegisterContentForm{
+        width: 100%;
+        height: 600px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        box-shadow: $BoxShadow;
+        display: flex;
+        flex-direction: column;
+    }
+    .LoginRegisterContentFormForm{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .LoginRegisterContentFormBackground{
+        display: none;
+    }
+    .RegisterIconMail{
+        left: 5px;
+        top: 235px;
+    }
+    .RegisterIconPass{
+        left: 5px;
+        top: 305px;
+    }
+    .inputGroup{
+        position: absolute;
+        right: 0;
+        top: 240px;
+        font-size: 15px;
+        background-color: transparent;
+        border: gray 1px solid;
+        border-bottom: none !important;
+        
+        
+        height: 40px;
+    }
+    #FormFirstNameLastName{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        
+    
+    }
+    #FormFirstNameLastName input{
+        text-indent: 0;
+        width: 100%;
+    }
+    #RegisterEmail::placeholder, #RegisterPassword::placeholder{
+        top:5px;
+    }
+    .NoAccYesAcc{
+        margin-top: 10px;
+    }
+    #RegisterEmail, #RegisterPassword, #RegisterDate, #name, #LastName{
+        height: 40px !important;
+        
+    }
+}
+@media only screen and (min-width:611px) and (max-width:765px){
+    .LoginRegisterContentFormWrap{
+        width: 80%;
+        
+    }
+    .LoginRegisterContentForm{
+        width: 100%;
+        height: 500px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        box-shadow: $BoxShadow;
+        display: flex;
+        flex-direction: column;
+    }
+    .LoginRegisterContentFormForm{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .LoginRegisterContentFormBackground{
+        display: none;
+    }
+}
+@media only screen and (min-width:765px) and (max-width:1023px){
+    .LoginRegisterContentFormWrap{
+        width: 60%;
+        
+    }
+    .LoginRegisterContentForm{
+        width: 100%;
+        height: 500px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        box-shadow: $BoxShadow;
+        display: flex;
+        flex-direction: column;
+    }
+    .LoginRegisterContentFormForm{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .LoginRegisterContentFormBackground{
+        display: none;
+    }
+}
+@media only screen and (min-width:1024px) and (max-width:1350px){
+    // input::placeholder{
+    //     font-family: $FontFamily;
+    //     font-size: 15px;
+    //     opacity: 0.6;
+    //     position: absolute;
+        
+        
+    // }
+    // .LoginIconMail, .LoginIconPass, .RegisterIconMail, .RegisterIconPass{
+    //     color: #00478f;
+    //     font-size: 20px !important;
+    //     position: absolute;
+    // }
+    .LoginRegisterContentFormWrap{
+        width: 80%;
+        
+    }
+}

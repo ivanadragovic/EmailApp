@@ -1,0 +1,296 @@
+<div class="dashboard">
+    <div class="dashboardNav">
+        <div class="dashboardNavComposeMail">
+            <div class="dashboardNavComposeMailButtonWrap">
+                <button (click)="openComposeMail()" class="desktopOpenComposeButton">Compose <i class="bi bi-pencil-square"></i></button>
+            </div>
+        </div>
+        <div class="dashboardNavMenuWrap">
+            <div class="dashboardNavMenuWrapNavBar">
+                <div class="dashboardNavMenuWrapNavBarIcons icon" id="inbox">
+                    <div class="iconImg" [hidden]="showRecievedMailsDiv == true"><img src="assets/images/inbox (1).png" alt="" (click)="changeToRecievedMails()"></div>
+                    <div class="iconImg" [hidden]="showRecievedMailsDiv == false"><img src="assets/images/inbox (3).png" alt="" (click)="changeToRecievedMails()"></div>
+                    <div class="iconName" ><p (click)="changeToRecievedMails()" [ngClass]="showRecievedMailsDiv ? 'active' : 'noActive'">Inbox</p></div>
+                </div>
+                <div class="dashboardNavMenuWrapNavBarIcons icon" id="sent">
+                    <div class="iconImg" [hidden]="showSentMailsDiv == true"><img src="assets/images/sent (1).png" alt="" (click)="changeToSentMails()"></div>
+                    <div class="iconImg" [hidden]="showSentMailsDiv == false"><img src="assets/images/sent (3).png" alt="" (click)="changeToSentMails()"></div>
+                    <div class="iconName" ><p (click)="changeToSentMails()" [ngClass]="showSentMailsDiv ? 'active' : 'noActive'">Sent</p></div>
+                </div>
+                <div class="dashboardNavMenuWrapNavBarIcons icon" id="drafts">
+                    <div class="iconImg"><img src="assets/images/draft.png" [hidden]="showDraftsMailsDiv == true" alt="" (click)="changeToDrafts()"></div>
+                    <div class="iconImg"><img src="assets/images/draft (2).png" [hidden]="showDraftsMailsDiv == false" alt="" (click)="changeToDrafts()"></div>
+                    <div class="iconName"><p (click)="changeToDrafts()" [ngClass]="showDraftsMailsDiv ? 'active' : 'noActive'">Drafts</p></div>
+                </div>
+                <div class="dashboardNavMenuWrapNavBarIcons icon" id="favorites">
+                    <div class="iconImg"><img src="assets/images/star.png" [hidden]="showFavoritesMailsDiv == true" alt="" (click)="changeToFavorites()"></div>
+                    <div class="iconImg"><img src="assets/images/star (2).png" [hidden]="showFavoritesMailsDiv == false" alt="" (click)="changeToFavorites()"></div>
+                    <div class="iconName"><p (click)="changeToFavorites()" [ngClass]="showFavoritesMailsDiv ? 'active' : 'noActive'">Favorites</p></div>
+                </div>
+                <div class="dashboardNavMenuWrapNavBarIcons icon" id="logout">
+                    <div class="iconImg"><img src="assets/images/logout.png" alt="" (click)="logOut()"></div>
+                    <div class="iconName"><p  (click)="logOut()">Logout</p></div>
+                </div>
+            </div>
+            
+        </div>
+     </div>
+    <div class="dashboardContent" [ngClass]="(openedMail)? 'notFullWidth':'fullWidth'">
+        <div class="dashboardContentSearch" *ngIf="mobileOpenedMail == false">
+            <div class="dashboardContentSearchWrap">
+                <input type="text" placeholder="Search for mails" [(ngModel)] = "filterText" (keyup)="filter()">
+                <i class="bi bi-search searchMailsIcon"></i>
+            </div>
+        </div>
+        <div class="dashboardContentMails">
+            <!-- Received mails -->
+            <div class="dashboardContentRecievedMailsWrap" *ngIf="showRecievedMailsDiv == true">
+                <div class="dashboardContentRecievedMailsWrapDIV" *ngFor="let email of receivedMails" [hidden]="email.toShow == false && toShow == true">
+                    <i class="bi bi-star-fill favoritesStarIcon" id="{{email.id}}" (click)="markAsFavorite(email.id)" ></i>
+                    <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_5xdtaojy.json" id="lottie{{email.id}}" background="transparent"  speed="1"  style="width: 90px; height: 90px;"></lottie-player>
+                    <div class="email" (click)="selectMailToOpen(email)">
+                        <div class="emailSenderName" >
+                            <h1 id="senderName">From: {{email.sender.firstName}}</h1><p>{{email.dateTime | date:'dd/MM/yy, h:mm a'}}</p>
+                        </div>
+                        <div class="emailContentPreview">
+                            <p>{{email.content}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sent mails -->
+            <div class="dashboardContentSentMailsWrap" *ngIf="showSentMailsDiv == true">
+                <div class="dashboardContentSentMailsWrapDIV" *ngFor="let email of sentMails" [hidden]="email.toShow == false && toShow == true">
+                    <i class="bi bi-star-fill favoritesStarIcon" [id] = "email.id" (click)="markAsFavorite(email.id)"></i>
+                    <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_5xdtaojy.json" id="lottie{{email.id}}" background="transparent"  speed="1"  style="width: 90px; height: 90px;"></lottie-player>
+                    <div class="email" (click)="selectMailToOpen(email)">
+                        <div class="emailSenderName">
+                            <div class="emailSenderNameTo">
+                                <h1>To:</h1>
+                                <div class="emailSenderNameDiv" *ngFor="let receiver of email.receivers">
+                                    <h1 class="receiversFirstName">{{receiver.firstName}}</h1>
+                                    <h1 *ngIf="!isLoading && showCommaFunctionSecond(email, receiver)">,</h1>
+                                </div>
+                            </div>
+                            <p>{{email.dateTime | date:'dd/MM/yy, h:mm a'}}</p>
+                        </div>
+                        <div class="emailContentPreview"><p>{{email.content}}</p></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Drafts -->
+            <div class="dashboardContentDraftsMailsWrap" *ngIf="showDraftsMailsDiv == true" >
+                <div class="dashboardContentDraftsMailsWrapDIV" *ngFor="let email of drafts" [hidden]="email.toShow == false && toShow == true">
+                    <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_2ntmkuwt.json" id="trashBin{{email.id}}" class="lottieTrashBin" background="transparent"  speed="1.5"  style="width: 90px; height: 90px;" (click)="discardDraft(email.id)"></lottie-player>
+                    <div class="email" (click)="openComposeMailDrafts(email.subject, email.content,email.id)">
+                        <div class="emailSenderName">
+                            <div class="emailSenderNameTo">
+                                <h1>To:</h1>
+                                <div class="emailSenderNameDiv" *ngFor="let receiver of email.receivers">
+                                    <h1 class="receiversFirstName">{{receiver.firstName}}</h1>
+                                    <h1 *ngIf="!isLoading && showCommaFunctionSecond(email, receiver)">,</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="emailContentPreview"><p>{{email.content}}</p></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Favorites -->
+            <div class="dashboardContentFavoritesMailsWrap" *ngIf="showFavoritesMailsDiv == true" >
+                <div class="dashboardContentFavoritesMailsWrapDIV" *ngFor="let email of favorites" [hidden]="email.toShow == false && toShow == true">
+                    <i class="bi bi-star-fill favoritesStarIcon_1" id="fav{{email.id}}" (click)="unMarkFavorite(email.id)"></i>
+                    
+                    <div class="email" (click)="selectMailToOpen(email)">
+                        <div class="emailSenderName" >
+                            <h1 id="senderName" *ngIf="sameUsername(email.sender.username) == false">From: {{email.sender.firstName}}</h1><h1 *ngIf="sameUsername(email.sender.username)" id="senderName">From: me</h1><p>{{email.dateTime | date:'dd/MM/yy, h:mm a'}}</p>
+                        </div>
+                        <div class="emailContentPreview">
+                            <p>{{email.content}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Za desktop uredjaje -->
+
+
+
+    <!-- Za desktop uredjaje -->
+    <!-- Otvori mejl -->
+    <div class="dashboardContentOpenedMail" *ngIf="openedMail">
+        <div class="dashboardContentOpenedMailHeader">
+            <div class="dashboardContentOpenedMailHeaderTitle">
+                <p>Messages: </p>
+            </div>
+            <div class="dashboardContentOpenedMailHeaderClose">
+                <i class="bi bi-x-circle-fill trashBinToolTip" (click)="closeOpenedMail()"></i>
+            </div>
+            
+        </div>
+        <div class="dashboardContentOpenedMailSelected">
+            <div class="dashboardContentOpenedMailSelectedTitle">
+                <div class="dashboardContentOpenedMailSelectedFullName">
+                    <h1>{{selectedMail.sender.firstName}} {{selectedMail.sender.lastName}} <i class="bi bi-caret-down-fill" (click)="showDetails()"></i></h1>
+                    <!-- <p>email: {{selectedMail.sender.username}}@email.com</p> -->
+                </div>
+                <div class="dashboardContentOpenedMailSelectedFullNameDetails" *ngIf="details == true">
+                    <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>From:</td>
+                            <td>{{selectedMail.sender.username}}@email.com</td>
+                          </tr>
+                          <tr>
+                            <td>To: </td>
+                            <td class="showDetailsMailsTd">
+                                <div class="showDetailsMails" *ngFor="let mail of selectedMail.receivers">
+                                    <p>{{mail.firstName}} {{mail.lastName}} <{{mail.username}}@email.com> </p>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Subject: </td>
+                            <td>{{selectedMail.subject}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <div class="dashboardContentOpenedMailSelectedTitleSubjectDateTime">
+                    <div class="dashboardContentOpenedMailSelectedTitleSubjectDateTime_subject">
+                        <p>{{selectedMail.subject}}</p>
+                    </div>
+                    <div class="dashboardContentOpenedMailSelectedTitleSubjectDateTime_date">
+                        <p>{{selectedMail.dateTime | date:'dd/MM/yy, h:mm a'}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboardContentOpenedMailSelectedContent">
+                <div class="dashboardContentOpenedMailSelectedContentOriginal">
+                    <p>
+                        {{selectedMail.content}}
+                    </p>
+                </div>
+                
+                <div class="dashboardContentOpenedMailSelectedContentReplyedMails" *ngIf="viewReplyedMails == true">
+                    <div class="dashboardContentOpenedMailSelectedContentReplyedMailsSingleMail" *ngFor="let repliedMail of getAllReplyedMails">
+                        <div class="dashboardContentOpenedMailSelectedContentReplyedMailsSingleMailWrap">
+                            <div class="repliedMailUsername">
+                                {{repliedMail.username}}@email.com replied:
+                            </div>
+                            <div class="repliedMailContent">
+                                <p>{{repliedMail.content}}</p>
+                            </div>
+                            <div class="repliedMailDate">
+                                <p>{{repliedMail.dateTime | date:'dd/MM/yy, h:mm a'}}</p>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div *ngIf="emptyReplyArray == true" class="emptyReplyMailsWrap">
+                        <p  class="emptyReplyArray">Nothing to show here :/</p>
+                    </div>
+                    
+                </div>
+                <div class="replyTextBoxThread" *ngIf="replyTextBox == true">
+                    <div class="replyTextBoxThreadWrap">
+                        <textarea name="" id="" cols="30" rows="10" [(ngModel)] = "replyMailContent"></textarea>
+                        <i class="bi bi-trash-fill closeReplyBox" (click)="closeReplyTextBox()"></i>
+                        <button class="sendReply" (click)="sendReply()" >Send Reply</button>
+                    </div>
+                    
+                </div>
+            </div>
+           
+        </div>
+        <div class="dashboardContentOpenedMailReply">
+            <div class="dashboardContentOpenedMailReplyButton">
+                <button (click)="openReplyTextBox()" *ngIf="replyTextBox == false">
+                    Reply
+                </button>
+                
+                <p (click)="getReplyedMails()">View all replies</p>
+            </div>
+        </div>
+    </div>
+     <!-- Sastavi mejl -->
+    <div class="dashboardContentComposeMail" *ngIf="composeMailDashboard">
+        <div class="dashboardContentComposeMailHeader">
+            <div class="dashboardContentComposeMailHeaderTitle">
+                <p>New message</p>
+            </div>
+            <div class="dashboardContentComposeMailHeaderClose">
+                <i class="bi bi-x-circle-fill" (click)="closeCompose()"></i>
+            </div>
+        </div>
+        <div class="dashboardContentComposeMailReceivers">
+            <div class="dashboardContentComposeMailReceiversInput">
+                <input type="text" placeholder="Send to: " [(ngModel)] = "newMailReceiver" (keydown.enter)="checkForEnter()" (blur)="checkForEnter()">
+                <div class="receiversComposeSpan" id="receiversComposeSpan">
+                    <span *ngFor="let mail of arr" class="eachMailComposeSpan" id="div{{mail}}"> 
+                        <p>{{mail}}@email.com</p>
+                        <i id="{{mail}}" (click)="deleteFromReceivers(mail)" class="bi bi-x"></i>
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="dashboardContentComposeMailSubject">
+            <div class="dashboardContentComposeMailSubjectInput">
+                <input type="text" placeholder="Subject" [(ngModel)] = "newMailSubject">
+            </div>
+        </div>
+        <div class="dashboardContentComposeMailTextarea">
+            <div class="dashboardContentComposeMailTextareaInput">
+                <textarea name="" id="" cols="30" rows="10" [(ngModel)] = "newMailContent"></textarea>
+            </div>
+        </div>
+        <div class="dashboardContentComposeMailSend">
+            <div class="dashboardContentComposeMailSendButton">
+                <button (click)="sendNewEmail()">
+                    Send <i class="bi bi-arrow-right-short"></i>
+                </button>
+                <button (click)="saveToDraftsAndCloseCompose()" id="saveAsDraft">
+                    Save as draft 
+                </button>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Za desktop uredjeaje -->
+    <div class="alert alert-success alertMessageSent alerts" *ngIf="messageSent == true" role="alert" >
+        Email sent
+    </div>
+    <div class="alert alert-warning alertWrongFormat alerts" *ngIf="format == true" role="alert" >
+        Format is not correct
+    </div>
+    <div class="alert alert-success alertDraftSaved alerts" *ngIf="savedDraft == true" role="alert" >
+        Saved as draft
+    </div>
+    <div class="alert alert-success alertFavMarked alerts" *ngIf="favMarked == true && favNotMarked == false" role="alert" >
+        Marked as favorite
+    </div>
+    <div class="alert alert-warning alertFavMarked alerts" *ngIf="favMarked == false && favNotMarked == true" role="alert" >
+        Removed from favorites
+    </div>
+    <div class="alert alert-warning alertUnauthorized alerts" *ngIf="noUsers == true" role="alert" >
+        Unauthorized
+    </div>
+    <div class="alert alert-warning alertNoReceivers alerts" *ngIf="receiversNotFound == true" role="alert" >
+        Receivers not found 
+    </div>
+    <div class="alert alert-success alertReplied alerts" *ngIf="replied == true" role="alert" >
+        Replied
+    </div>
+    <div class="alert alert-warning alertNoReceiversMentioned alerts" *ngIf="noReceiversMentioned == true" role="alert" >
+        No receivers mentioned
+    </div>
+    <div class="alert alert-warning alertDraftDiscarded alerts" *ngIf="draftDiscarded == true" role="alert" >
+        Draft discarded
+    </div>
+    <div class="alert alert-warning alertSelfSending alerts" *ngIf="selfSending == true" role="alert" >
+       You can't send mail to yourself
+    </div>
+</div>

@@ -1,0 +1,1149 @@
+$TextColor: rgb(128, 128, 128);
+$BoxShadow:1px 0px 5px 0px rgb(192, 192, 192);
+$BoxShadow1: 6px 8px 6px -6px rgba(168,168,168,1);
+$Overlay:radial-gradient(circle, rgba(122,61,254,1) 15%, rgba(160,122,255,0.9360119047619048) 99%);
+$Overlay1:radial-gradient(circle, rgba(0,20,41,0.8631827731092436) 15%, rgba(0,61,122,0.7567401960784313) 99%);
+$BackgroundColor: #003d7a;
+$BackgroundColor1:#001429;
+$BackgroundColor2: rgb(40, 28, 48);
+$BackgroundColorDashboardContent:rgb(223, 237, 247);
+$BackgroundColorDashboardContent1:rgb(245,247,251);
+$BorderColor:#00478f;
+$FontFamily:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$FontFamily1:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+$FontFamily2:Georgia, 'Times New Roman', Times, serif;
+$HoverBgcolor:#001f3d;
+$ButtonBackgroundcolor: rgb(160, 24, 160);
+$ButtonBackgroundcolor1:rgb(227, 18, 86);
+$dashboardBoxShadow:4px 0px 5px 0px rgba(223,237,247,1);
+.active{
+    color: #e31258 !important;
+}
+.noActive{
+    color: whitesmoke !important;
+}
+.header{
+    width: 100%;
+    height: 5vh;
+    // box-shadow: $BoxShadow;
+    display: flex;
+    justify-content: right;
+    position: relative;
+}
+button{
+    background-color: $ButtonBackgroundcolor1 !important;
+}
+::-webkit-scrollbar-track{
+    background: transparent !important;
+}
+::-webkit-scrollbar-thumb{
+    background: $BackgroundColor2 !important;
+    border-radius: 25px;
+    width: 2px !important;
+}
+.headerContent{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    box-shadow: $BoxShadow;
+    position: absolute;
+    
+}
+.headerContentTitle{
+    width: 10%;
+    height: 100%;
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headerContentTitle h1{
+    height: 17px;
+    font-size: 17px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: $BackgroundColor;
+    cursor: pointer;
+}
+.dashboard{
+    width: 100%;
+    height: 100vh;
+    
+    display: flex;
+    flex-direction: row;
+}
+.dashboardNav{
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $BackgroundColor2;
+    
+}
+.dashboardNavComposeMail{
+    width: 100%;
+    height: 15%;
+}
+.dashboardNavComposeMailButtonWrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dashboardNavComposeMailButtonWrap button{
+    width: 70%;
+    height: 30%;
+    border: none;
+    border-radius: 5px;
+    background:$ButtonBackgroundcolor1;
+    text-align: center;
+    font-size: 17px;
+    color: white;
+    font-family:$FontFamily1;
+}
+
+///Meni i ikonice
+.dashboardNavMenuWrap{
+    height: 85%;
+}
+.dashboardNavMenuWrapNavBar{
+    width: 70%;
+    margin: 0 auto;
+}
+.icon{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+.iconImg img{
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.iconName{
+    width: calc(100% - 40px);
+    display: table;
+    
+}
+.iconName p{
+    margin-left: 10px;
+    color: white;
+    font-family: $FontFamily1;
+    font-weight: 600;
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 15px;
+    text-align: left;
+}
+//Kontent sadrzaj mejlovi itd
+.dashboardContent{
+    height: 100%;
+    background-color: $BackgroundColorDashboardContent1;
+}
+.fullWidth{
+    width: 85% !important;
+    
+    .searchMailsIcon{
+        right: 70px;
+    }
+    .dashboardContentSearchWrap{
+        width: 80%;
+        margin: 0 auto;
+    }
+   
+}
+.notFullWidth{
+    width: 35% !important;
+    .dashboardContentSearchWrap i{
+        right: 45px !important;
+    }
+}
+.dashboardContentSearch{
+    width: 100%;
+    height: 15%;
+}
+.dashboardContentSearchWrap{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.dashboardContentSearchWrap input{
+    width: 90%;
+    height: 25%;
+    outline: 0;
+    // border-width: 0 0 0.5px;
+    background-color: rgb(234, 238, 246);
+    border: none !important;
+    border-radius: 5px;
+    text-indent: 5px;
+}
+.dashboardContentSearchWrap input::placeholder{
+    text-align: center;
+}
+.dashboardContentSearchWrap i{
+
+    position: absolute;
+    right: 80px !important;
+    bottom: 59px !important;
+    
+}
+.dashboardContentSearchWrap input:focus ~ .searchMailsIcon{
+    transform: scale(0.0);    
+    transition: 500ms;
+}
+.dashboardContentSearchWrap input:focus::placeholder{
+    transform: scale(0.0);    
+    transition: 500ms;
+}
+.dashboardContentMails{
+    height:83%;
+    overflow: scroll;
+    overflow-x: hidden;
+    
+}
+::-webkit-scrollbar {
+    width: 10px;
+    
+}
+.dashboardContentMails::-webkit-scrollbar-track {
+    background: whitesmoke; 
+    border-radius: 5px;
+}
+.dashboardContentMails::-webkit-scrollbar-thumb {
+    background: $BackgroundColor2; 
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+    background: whitesmoke; 
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: $BackgroundColor2; 
+    border-radius: 5px;
+}
+.dashboardContentRecievedMailsWrap, .dashboardContentSentMailsWrap, .dashboardContentDraftsMailsWrap, .dashboardContentFavoritesMailsWrap{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    height: 100%;  
+    
+}
+
+.dashboardContentRecievedMailsWrapDIV, .dashboardContentSentMailsWrapDIV, .dashboardContentDraftsMailsWrapDIV, .dashboardContentFavoritesMailsWrapDIV{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: $BoxShadow;
+    position: relative;
+    
+}
+
+.email{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+    
+}
+.favoritesStarIcon{
+    position: absolute;
+    right: 5px;
+    color: gray;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 20px;
+    top:-5px
+}
+.favoritesStarIcon_1{
+    position: absolute;
+    right: 5px;
+    top:-5px;
+    color: orange;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 20px;
+}
+.favMailStarAnimation{
+    animation: rotate 300ms;
+    
+}
+.unFavMailStarAnimation{
+   animation: shrink 300ms;
+}
+@keyframes shrink{
+    0%{
+       transform: scale(1.0);
+      
+    }
+    25%{
+        transform: scale(0.6);
+    }
+    75%{
+        transform: scale(0.2);
+    }
+    100%{
+        
+        transform: scale(0);
+    }
+}
+@keyframes rotate{
+    0%{
+       transform: scale(1.0);
+       transform: translate(-10deg);
+    }
+    25%{
+        transform: rotate(20deg);
+    }
+    25%{
+        transform: rotate(-20deg);
+    }
+    75%{
+        transform: rotate(20deg);
+    }
+    100%{
+       
+        transform: rotate(-20deg);
+    }
+    
+    0%{
+        transform: scale(1.0);
+        transform: translate(10deg);
+    }
+}
+lottie-player{
+    position: absolute;
+    right: -31px;
+    top:-30px;
+    z-index: 0;
+} 
+.lottieTrashBin{
+    position: absolute;
+    right: -25px;
+    top:-30px;
+    cursor: pointer;
+}
+.emailSenderName{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.emailSenderNameDiv{
+    display: flex;
+    flex-direction: row;
+}
+.emailSenderNameTo{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    width: 60%;
+}
+.emailSenderName h1{
+    font-size: 15px;
+    font-family: $FontFamily1;
+    margin-top: 20px;
+    font-weight: 600;
+}
+.emailSenderName p{
+    font-size: 12px;
+    margin-right: 20px !important;
+    margin-top: 27px;
+}
+#senderName{
+    margin-left: 20px;
+}
+.receiversFirstName{
+    content: ",";
+}
+.emailContentPreview{
+    height:25px;
+    width: 100%;
+    margin-bottom: 20px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    color: $TextColor;
+}
+.emailContentPreview p{
+    margin-left: 20px;
+    margin-right: 40px;
+    overflow-x: hidden;
+    
+}
+
+
+
+
+///
+.dashboardContentOpenedMail, .dashboardContentComposeMail{
+    width: 50%;
+    height: 100%;
+    
+}
+
+///Compose mail
+.dashboardContentComposeMail{
+    position: absolute;
+    width: 600px !important;
+    height: 700px !important;
+    background-color: white;
+    bottom: 0;
+    right: 3%;
+    box-shadow: $BoxShadow;
+    z-index: 9999;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+
+}
+.tipForReceivers{
+    width: 200px;
+    color: $TextColor;
+    font-size: 12px;
+    font-style: italic;
+    position: absolute;
+    left: 0;
+    top:30px;
+}
+.dashboardContentComposeMailHeader, .dashboardContentOpenedMailHeader{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    
+}
+.dashboardContentComposeMailHeader{
+    height: 5% !important;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    background-color: whitesmoke;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+.dashboardContentComposeMailSubject, .dashboardContentComposeMailReceivers{
+    width: 100%;
+    height: 7%;
+    display: flex;
+    flex-direction: row;
+}
+.dashboardContentComposeMailReceivers{
+    height: 13% !important;
+    ::-webkit-scrollbar-track{
+        background: transparent !important;
+    }
+    ::-webkit-scrollbar-thumb{
+        background: $BackgroundColor2 !important;
+        border-radius: 25px;
+        width: 2px !important;
+    }
+    
+}
+
+.dashboardContentComposeMailHeaderTitle, .dashboardContentOpenedMailHeaderTitle{
+    margin-left: 40px;
+    height: 100%;
+    display: table;
+    width: 30%;
+}
+
+.dashboardContentComposeMailHeaderTitle p, .dashboardContentOpenedMailHeaderTitle p{
+    display: table-cell;
+    vertical-align: middle;
+    font-style: italic;
+    font-family: $FontFamily2;
+    font-weight: 600;
+    color:$BackgroundColor2;
+}
+.dashboardContentComposeMailSend{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 5%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position: absolute;
+    bottom: 0;
+}
+.dashboardContentComposeMailSendButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 60%;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    #saveAsDraft{
+        background-color: $TextColor !important;
+    }
+}
+
+.dashboardContentComposeMailSendButton button{
+    width: 50%;
+    margin-left:40px;
+    border: none;
+    border-radius: 5px;
+    background:$BackgroundColor2;
+    text-align: center;
+    font-size: 17px;
+    color: white;
+    font-family:$FontFamily1;
+}
+.dashboardContentComposeMailSendButton button i{
+    color: white;
+}
+.dashboardContentComposeMailSubjectInput, .dashboardContentComposeMailReceiversInput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top:10px;
+    border-bottom: 1px solid rgb(236, 236, 236);
+    width: 100%;
+    
+}
+.dashboardContentComposeMailReceiversInput{
+    ::-webkit-scrollbar-track{
+        background: transparent !important;
+    }
+    ::-webkit-scrollbar-thumb{
+        background: transparent !important;
+    }
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    justify-content: left;
+    overflow-y: scroll;
+}
+.dashboardContentComposeMailSubjectInput input, .dashboardContentComposeMailReceiversInput input{
+    width: 100%;
+    outline: 0;
+    border: none;
+    
+    background-color: transparent;
+    
+}
+.dashboardContentComposeMailReceiversInput input{
+    height: 35%;
+}
+.dashboardContentComposeMailSubjectInput input::placeholder, .dashboardContentComposeMailReceiversInput input::placeholder{
+    font-style: italic;
+    font-family: $FontFamily1;
+    font-weight: 600;
+    color: $BackgroundColor2;
+    text-align: left;
+
+}
+.dashboardContentComposeMailSubjectInput input:focus::placeholder, .dashboardContentComposeMailReceiversInput input:focus::placeholder{
+   
+    transition: 500ms;
+}
+.receiversComposeSpan{
+    display: flex;
+    flex-direction: row;
+    
+    align-self: flex-start;
+    flex-wrap: wrap;
+    font-size:13px;
+    font-weight: 500;
+    width: 100%;
+
+    
+    
+    
+   
+    .eachMailComposeSpan{
+        margin-top: 5px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        box-shadow: $BoxShadow;
+        border: 1px solid gray;
+        border-radius: 25px;
+        height: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: white;
+        width: fit-content;
+        text-align: right;
+        ;
+        i{
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 1px;
+           
+        }
+        p{
+            margin-top: 3px;
+            margin-left: 2px;
+            padding-left: 5px;
+        }
+    }
+    
+}
+
+.break{
+    color: yellow;
+}
+.noBreak{
+    color: black;
+}
+
+
+.dashboardContentComposeMailHeaderClose, .dashboardContentOpenedMailHeaderClose{
+    
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    position: relative;
+    margin-right: 30px;
+}
+.trashBinToolTipDiscardDraft{
+    position: absolute;
+    right: 5px;
+    color: $TextColor;
+    cursor: pointer;
+}
+.trashBinToolTip::after{
+    position: absolute;
+    width: 40px;
+    border-radius: 5px;
+    height: 20px;
+    background-color: rgb(190, 190, 190);
+    content: "Close";
+    font-size: 10px;
+    text-align: center;
+    display: none;
+}
+.trashBinToolTip:hover::after{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.starToolTip::after{
+    position: absolute;
+    width: 90px;
+    border-radius: 5px;
+    height: 20px;
+    background-color: rgb(190, 190, 190);
+    content: "Add to favorites";
+    font-size: 10px;
+    text-align: center;
+    display: none;
+}
+.starToolTip:hover::after{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dashboardContentComposeMailHeaderClose i, .dashboardContentOpenedMailHeaderClose i{
+    font-style: italic;
+    font-family: $FontFamily1;
+    font-weight: 600;
+    font-size: 20px;
+    color: $BackgroundColor2;
+    cursor: pointer;
+}
+.dashboardContentComposeMailTextarea{
+    width: 100%;
+    height: 70%;
+    
+}
+.dashboardContentComposeMailTextareaInput{
+    width: 87%;
+    height: 100%;
+    
+    margin: 0 auto;
+}
+.dashboardContentComposeMailTextareaInput textarea{
+    width: 100%;
+    height: 90%;
+    margin-top: 40px;
+    border: none;
+    resize: none;
+    outline: 0;
+}
+
+
+////selektovan mail
+.dashboardContentOpenedMailSelected{
+    width: 100%;
+    height: 90%;
+    
+}
+.dashboardContentOpenedMailSelectedTitle{
+    width: 75%;
+    margin: 0 auto;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboardContentOpenedMailSelectedFullName{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 40%;
+   position: relative;
+}
+.dashboardContentOpenedMailSelectedFullName h1{
+    margin-top: 20px;
+    font-size: 15px;
+    font-family: $FontFamily;
+    // font-weight: 700;
+    color: black;
+}
+.dashboardContentOpenedMailSelectedFullName h1 i{
+    padding-bottom: 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.dashboardContentOpenedMailSelectedFullNameDetails{
+    
+    min-height: 50px;
+    min-width: 210px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    
+    box-shadow: $BoxShadow;
+    background-color: white;
+    position: absolute;
+    top: 128px;
+    z-index: 1;
+    
+}
+
+// .dashboardContentOpenedMailSelectedFullNameDetailsMails{
+//     width: 95%;
+//     height: 95%;
+//     overflow-x: hidden;
+   
+//     .dashboardContentOpenedMailSelectedFullNameDetailsMailsSender{
+//         color: $TextColor;
+//         font-size: 12px;
+//         margin-top: 5px;
+//         text-align: left;
+//     }
+//     .dashboardContentOpenedMailSelectedFullNameDetailsMailsReceiversMails{
+//         color: $TextColor;
+//         font-size: 12px;
+//         max-width: 100%;
+//         text-align: left;
+//         position: relative;
+//         display: flex;
+//         flex-direction: row;
+//         .usernamesReceiversDetails{
+//             max-width: 100%;    
+//         }
+//     }
+//     .detailsMoreMails{
+//         display: none;
+//         position: absolute;
+//     }
+//     .dashboardContentOpenedMailSelectedFullNameDetailsMailsReceiversMails:hover > .detailsMoreMails{
+//         display: flex;
+//         flex-direction: column;
+//         top: 150px;
+//     }
+//     .dashboardContentOpenedMailSelectedFullNameDetailsMailsReceivers{
+//         display: flex;
+//         flex-direction: row;
+//         margin-right: 10px;
+//     }
+//     #receiversTo{
+//         color: $TextColor;
+//         font-size: 12px;
+//     }
+    
+    
+// }
+.table-borderless{
+    
+    font-size: 13px;
+    text-align: left;
+}
+.showDetailsMailsTd{
+    display: flex;
+    flex-direction: column;
+}
+.showDetailsMails{
+    height: 17px;
+    
+    
+}
+.showDetailsMails p{
+    display: flex;
+    flex-direction: row;
+}
+.dashboardContentOpenedMailSelectedFullName p{
+    font-size: 13px;
+    color: $TextColor;
+}
+.dashboardContentOpenedMailSelectedTitleSubjectDateTime{
+    width: 100%;
+    height: 60%;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.dashboardContentOpenedMailSelectedTitleSubjectDateTime_subject{
+    display: table;
+    height: 100%;
+    width: 80%;
+}
+.dashboardContentOpenedMailSelectedTitleSubjectDateTime_subject p{
+    margin-top: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 30px;
+    color: black;
+    font-weight: 600;
+    font-family:$FontFamily2;
+}
+.dashboardContentOpenedMailSelectedTitleSubjectDateTime_date p{
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 12px;
+    color: $TextColor;
+    text-align: right;
+}
+.dashboardContentOpenedMailSelectedTitleSubjectDateTime_date{
+    display: table;
+    height: 100%;
+    width: 20%;
+}
+.dashboardContentOpenedMailSelectedContent{
+    height: 90%;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+    overflow-y: auto;
+    position: relative;
+    ::-webkit-scrollbar-track {
+        background: transparent; 
+        border-radius: 15px;
+        height: 95%;
+    }
+}
+.dashboardContentOpenedMailSelectedContentOriginal{
+    width: 100%;
+    height: 40%;
+    overflow-y: auto;
+}
+.dashboardContentOpenedMailSelectedContentOriginal p{
+    margin-top: 15px;
+    max-width: 100%;
+    white-space: pre-wrap;
+    text-align: justify;
+    color: $TextColor;
+    overflow-wrap: break-word;
+}
+.dashboardContentOpenedMailSelectedContentReplyedMails{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: $BoxShadow;
+    height: 60%;
+    width: 95%;
+    overflow:scroll;
+    overflow-x: hidden;
+    ::-webkit-scrollbar-track {
+        background: rgb(255, 255, 255) !important; 
+        border-radius: 15px;
+        height: 95%;
+    }
+}
+.emptyReplyMailsWrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.emptyReplyArray{
+    color: $TextColor;
+    font-style: italic;
+    font-weight: 700;
+    font-family: $FontFamily2;
+}
+.dashboardContentOpenedMailSelectedContentReplyedMailsSingleMail{
+    width: 90%;
+    min-height: 200px;
+    border-bottom: 0.5px solid rgb(207, 207, 207) ;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+   
+}
+.dashboardContentOpenedMailSelectedContentReplyedMailsSingleMail:last-child{
+    border-bottom: none !important;
+}
+.dashboardContentOpenedMailSelectedContentReplyedMailsSingleMailWrap{
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+}
+.dashboardContentOpenedMailReply{
+   width: 100%;
+   height: 5%;
+}
+.repliedMailUsername{
+    margin-top: 10px;
+    height: 5%;
+    width: 100%;
+    color: black;
+    font-weight: 700;
+    font-family: $FontFamily2;
+}
+.repliedMailContent{
+    margin-top: 5px;
+    min-height: 95%;
+    width: 100%;
+    font-style: italic;
+    color: $TextColor;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+.repliedMailDate{
+    align-self: flex-end;
+    font-size: 15px;
+}
+//////////////////////////////////
+.dashboardContentOpenedMailReplyButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40%;
+}
+.dashboardContentOpenedMailReplyButton p{
+    font-size: 13px;
+    margin-top: 25px;
+    margin-left: 10px;
+    color: $TextColor;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.dashboardContentOpenedMailReplyButton button{
+    width: 50%;
+    margin-left:40px;
+    border: none;
+    border-radius: 5px;
+    background:$BackgroundColor2;
+    text-align: center;
+    font-size: 17px;
+    color: white;
+    font-family:$FontFamily1;
+}
+.replyTextBoxThread{
+    width: 95%;
+    height: 300px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    bottom: 0;
+    left: 0;
+    // margin: 0 auto;
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: $BoxShadow;
+    position: absolute;
+}
+.replyTextBoxThreadWrap{
+    width: 100%;
+    height: 80%;
+    margin: 0 auto;
+    
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.replyTextBoxThreadWrap textarea{
+    width: 93%;
+    height: 93%;
+    
+    margin: 0 auto;
+    
+    resize: none;
+    border: none;
+    outline: 0;
+    
+}
+.closeReplyBox{
+    position: absolute;
+    top:3px;
+    right:7px;
+    cursor: pointer;
+    color: $TextColor;
+}
+.sendReply{
+    width: 100px;
+    height:40px;
+    font-size: 15px;
+    background-color: $BackgroundColor2;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    position: absolute;
+    bottom: -50px;
+    left: 10px;
+}
+.alerts{
+    position: absolute;
+    bottom: 0;
+    left:20px;
+    animation: roll-in 1s ease;
+}
+@keyframes roll-in {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%) 
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px)
+    }
+}
+
+.favorite{
+ color: orange !important;
+ 
+ transition: 500ms;
+}
+.noFavorite{
+    color: $TextColor;
+}
+
+
+//Divovi na rezoluciji mobilnih uredjaj koji ne trebajud a se prikazuju na vecim rezolucijama
+.dashboardMobileOpenedMail{
+    display: none;
+}
+.mobileOpenComposeButton{
+    display: none;
+}
+.dashboardMobileContentComposeMail, .dashboardMobileContentOpenedMail{
+    display: none;
+}
+.mobileNavBar{
+    display: none;
+}
+.mobileNavBarIcon{
+    display: none;
+}
+//
+@media only screen and (min-width:320px) and (max-width:600px){
+    .dashboardContentOpenedMail, .dashboardContentComposeMail,.desktopOpenComposeButton, .dashboardNav{
+        display: none;
+        
+    }
+    .dashboardContent{
+        width: 100%;
+        position: relative;
+    }
+    .mobileNavBarIcon{
+        position: absolute;
+        display: block;
+        font-size: 25px;
+        left: 40px;
+    }
+    .dashboardContentSearchWrap input:focus ~ .mobileNavBarIcon{
+        display: none !important;
+    }
+    .mobileNavBar{
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        height: 100%;
+        background-color: $BackgroundColor;
+        position: absolute;
+        z-index: 1;
+    }
+    .mobileNavBarHeader{
+        display: flex;
+        justify-content: left;
+        margin-left: 20px;
+        margin-top: 10px;
+        font-size: 20px;
+        color: $ButtonBackgroundcolor;
+        height: 5%;
+    }
+    .icon{
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 20px !important;
+    }
+    .button{
+        width: 90%;
+        height: 100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px !important;
+    }
+    .mobileNavBarMenuIconsButtonCompose{
+        width: 100%;
+    }
+    .mobileOpenComposeButton{
+        display: block;
+        width: 100% !important;
+        height: 50%;
+        border: none;
+        border-radius: 5px;
+        background:$ButtonBackgroundcolor;
+        text-align: center;
+        font-size: 17px;
+        color: white;
+        font-family:$FontFamily1;
+    }
+}
+@media only screen and (min-width:600px) and (max-width:1040px){
+    .dashboardContentOpenedMail, .dashboardContentComposeMail,.desktopOpenComposeButton{
+        display: none;
+        
+    }
+    .dashboardMobileContentComposeMail, .dashboardMobileContentOpenedMail{
+        display: block;
+    }
+    .mobileOpenComposeButton{
+        display: block;
+    }
+    .dashboardContent{
+        width: 70%;
+    }
+    // .dashboardMobileOpenedMail{
+    //     width: 100%;
+    //     height: 100%;
+    // }
+    .dashboardNav{
+        width: 30%;
+    }
+}
+@media only screen and (min-width:1040px) and (max-width:1280px){
+    .dashboardContentOpenedMailSelectedTitle, .dashboardContentOpenedMailSelectedContent{
+        width: 98% !important;
+        margin: 0 auto;
+    }
+}

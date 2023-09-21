@@ -1,0 +1,30 @@
+$BackgroundColor: #003d7a;
+$BackgroundColorDashboardContent:rgb(223, 237, 247);
+$ButtonBackgroundcolor: rgb(160, 24, 160);
+$BoxShadow: 10px 10px 25px 0px rgba(0,31,61,0.82);
+
+.background{
+    width: 100%;
+    height: 100vh;
+    background-color: $BackgroundColor;
+}
+
+.center{
+    margin: auto;
+    width: 30%;
+    text-align: center;
+    position: absolute;
+    top: 48%;
+    left: 35%;
+    transform: translate(0, -50%);
+    color: $BackgroundColorDashboardContent;
+}
+
+button {
+    background-color: $ButtonBackgroundcolor;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: $BackgroundColorDashboardContent;
+    border: none;
+    box-shadow: $BoxShadow;
+}
