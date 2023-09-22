@@ -2,9 +2,6 @@ import { Component,OnInit, HostListener,CUSTOM_ELEMENTS_SCHEMA  } from '@angular
 import { MailService } from '../services/mail.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-
-
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -120,8 +117,6 @@ export class DashboardComponent implements OnInit  {
         }
       })
       //This part of code fetches received mails which are marked as favorite. This will enable 'star', which represents 'markAsFavorite()' call button in this case 'icon', to stay orange if the mail with that star on it was marked as favorite beforehand. So basically star will stay orange even on refresh
-      
-
     },(error:HttpErrorResponse) => {
       if(error.status == 401){
         setTimeout(() => {
@@ -133,7 +128,6 @@ export class DashboardComponent implements OnInit  {
       }
     })
     ///Whenever application is launched this part of code gets all received mails
-
 
     //Fetches all sent mails when app is launched
     this.mail.showSentMails(usernamePassword).subscribe((response) =>{
@@ -151,7 +145,6 @@ export class DashboardComponent implements OnInit  {
     //Fetches all sent mails when app is launched
     
   }
-
   //This function will mark an email as favorite. It receives 'mailID' of email. Every email has its own ID which was sent from data base. That ID is also CSS ID of every star(icon in HTML).Every mail is represented in seprate DIV generated with ngFor which cycles through arrays of objects called: receivedMails, sentMails, drafts, favorites 
   markAsFavorite(id:any){
     this.temp = document.getElementById(id)
@@ -400,9 +393,6 @@ export class DashboardComponent implements OnInit  {
   }
   //discard message/draft
 
-
-
-
   //Change to favorites, fetch all favorites and show them
   changeToFavorites(){
     this.showFavoritesMailsDiv = true
@@ -529,9 +519,6 @@ export class DashboardComponent implements OnInit  {
   }
   //Open selected mail and close it f's
 
-
-
-  
   //This part of code will delete receiver from object arr, which is used for storing receivers.
   deleteFromReceivers(mailUsername:string){
     let index
@@ -560,7 +547,6 @@ export class DashboardComponent implements OnInit  {
           this.selfSending = false
         }, 4000);
       }
-      
       
     }else {
       if(this.newMailReceiver.length > 0){
@@ -658,7 +644,7 @@ export class DashboardComponent implements OnInit  {
     
   }
    //Method called when u click on send new mail. It will send 'auth' username:password in base64 encoding format, aswell as receivers subject and content. Which will be stored in another object inside a method.
-  
+
   ///Get all replied mails if there are any
   getReplyedMails(){
     let usernamePassword = "Basic " + localStorage.getItem("auth")
